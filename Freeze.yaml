@@ -1,0 +1,15 @@
+common:
+  format: csv
+  prefix: ''
+  database: 'sqlite:///test.db'
+
+exports:
+ - query: >
+      SELECT g.group_id, g.status AS group_status, g.name AS group_name, g.lead_dg AS group_lead_dg,
+             g.abbreviation AS group_abbr,
+             m.status AS member_status, m.subgroup_name AS member_subgroup, m.name AS member_name,
+             m.country AS member_country, m.public_authorities AS member_authorities, 
+             m.type AS type, m.member_type 
+      FROM exp_group g LEFT JOIN exp_group_member m ON g.group_id = m.group_id;
+   filename: group_members.csv
+  
